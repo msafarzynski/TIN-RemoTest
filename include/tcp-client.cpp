@@ -4,51 +4,69 @@
   #include <arpa/inet.h>
   #include <stdio.h>
   #include <stdlib.h>
-  #include <string.h>
+  #include <cstring>
   #include <unistd.h>
  
-  int main(void)
-  {
-    struct sockaddr_in stSockAddr;
-    int Res;
-    int SocketFD = socket(PF_INET, SOCK_STREAM, IPPROTO_TCP);
+class tcp_client{
+    struct sockaddr_in addr4;
+    struct sockaddr_in6 addr6;
+    struct hostent *hp;
+    int sockfd;
+ public:
  
-    if (-1 == SocketFD)
+ tcp_client(char* char_addr, int port){
+    sockfd = socket(AF_INET6, SOCK_STREAM, 0);
+    if (sockfd == -1)
     {
-      perror("cannot create socket");
-      exit(EXIT_FAILURE);
+      perror("Cannot create socket");
+      return 1;
     }
- 
-    memset(&stSockAddr, 0, sizeof(stSockAddr));
- 
-    stSockAddr.sin_family = AF_INET;
-    stSockAddr.sin_port = htons(1100);
-    Res = inet_pton(AF_INET, "172.20.10.2", &stSockAddr.sin_addr);
- 
-    if (0 > Res)
-    {
-      perror("error: first parameter is not a valid address family");
-      close(SocketFD);
-      exit(EXIT_FAILURE);
+    if(strchr(char_addr, '.') != null){
+      hp = gethostbyname(char_addr);
+      if(hp == null){
+        perror("Invalid address");
+        return 1;
+      }
+      memset((char*)&addr4, 0, sizeof(addr4));
+      addr4.sin_family = AF_INET;
+      memcpy((char*)&addr4.sin_addr, (char*)hp->h_addr, hp->h_length);
+      addr4.sin_port = htons(port);
+      if(connect(sockfd, (struct sockaddr*)&addr4, sizeof(addr4))==-1){
+        perror("connecting stream socket");
+        close(sockfd);
+        return 1;
+      }
     }
-    else if (0 == Res)
-    {
-      perror("char string (second parameter does not contain valid ipaddress)");
-      close(SocketFD);
-      exit(EXIT_FAILURE);
+    else if(strchr(char_addr, ':') != null){
+      hp = gethostbyname2(char_addr, AF_INET6);
+      if(hp == null){
+        perror("Invalid address");
+        return 1;
+      }
+      memset((char*)&addr6, 0, sizeof(addr6));
+      addr6.sin6_len = sizeof(addr6);
+      memcpy((char*)&addr6.sin6_addr, (char*)hp->h_addr, hp->h_length);
+      addr6.sin6_family = AF_INET6;
+      addr6.sin6_port = htons(port);
+      if(connect(sockfd, (struct sockaddr*)&addr6, sizeof(addr6))==-1){
+        perror("connecting stream socket");
+        close(sockfd);
+        return 1;
+      }
     }
+ }
+ ~tcp_client(){
+  if(addr4 != null)
+    delete(addr4);
+  else if(addr6 != null)
+    delete(addr6);
+  close(sockfd);
+ }
  
-    if (-1 == connect(SocketFD, (struct sockaddr *)&stSockAddr, sizeof(stSockAddr)))
-    {
-      perror("connect failed");
-      close(SocketFD);
-      exit(EXIT_FAILURE);
+ 
+ int write(const string& msg){
+    if(write(sockfd, msg, msg.length() == -1){
+      perror("Writing on stream socket");
+      return 1;
     }
- 
-    /* czytanie i pisanie*/
- 
-    (void) shutdown(SocketFD, SHUT_RDWR);
- 
-    close(SocketFD);
-    return EXIT_SUCCESS;
   }
