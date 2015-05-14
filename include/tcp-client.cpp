@@ -19,13 +19,13 @@ class tcp_client{
     if (sockfd == -1)
     {
       perror("Cannot create socket");
-      return 1;
+      return;
     }
     if(strchr(char_addr, '.') != null){
       hp = gethostbyname(char_addr);
       if(hp == null){
         perror("Invalid address");
-        return 1;
+        return;
       }
       memset((char*)&addr4, 0, sizeof(addr4));
       addr4.sin_family = AF_INET;
@@ -34,14 +34,14 @@ class tcp_client{
       if(connect(sockfd, (struct sockaddr*)&addr4, sizeof(addr4))==-1){
         perror("connecting stream socket");
         close(sockfd);
-        return 1;
+        return;
       }
     }
     else if(strchr(char_addr, ':') != null){
       hp = gethostbyname2(char_addr, AF_INET6);
       if(hp == null){
         perror("Invalid address");
-        return 1;
+        return;
       }
       memset((char*)&addr6, 0, sizeof(addr6));
       addr6.sin6_len = sizeof(addr6);
@@ -51,7 +51,7 @@ class tcp_client{
       if(connect(sockfd, (struct sockaddr*)&addr6, sizeof(addr6))==-1){
         perror("connecting stream socket");
         close(sockfd);
-        return 1;
+        return;
       }
     }
  }
