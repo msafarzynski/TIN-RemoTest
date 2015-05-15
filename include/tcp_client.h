@@ -2,9 +2,8 @@
   #include <sys/socket.h>
   #include <netinet/in.h>
   #include <arpa/inet.h>
-  #include <stdio.h>
-  #include <stdlib.h>
-  #include <cstring>
+  #include <cstdio>
+  #include <cstdlib>
   #include <unistd.h>
  
 class tcp_client{
@@ -15,5 +14,5 @@ class tcp_client{
  public:
   tcp_client(char* char_addr, int port);
   ~tcp_client();
-  int write(const string& msg);
-  int send(const string& msg);
+  int write_msg(const char* msg);
+};
