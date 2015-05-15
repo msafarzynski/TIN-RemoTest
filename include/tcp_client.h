@@ -2,8 +2,10 @@
   #include <sys/socket.h>
   #include <netinet/in.h>
   #include <arpa/inet.h>
+  #include <netdb.h>
   #include <cstdio>
   #include <cstdlib>
+  #include <cstring>
   #include <unistd.h>
  
 class tcp_client{
