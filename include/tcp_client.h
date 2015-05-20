@@ -8,13 +8,14 @@
   #include <cstring>
   #include <unistd.h>
  
+#pragma once
+
 class tcp_client{
-    struct sockaddr_in addr4;
-    struct sockaddr_in6 addr6;
-    struct hostent *hp;
+    struct sockaddr_storage server;
     int sockfd;
  public:
-  tcp_client(char* char_addr, int port);
+  tcp_client(struct sockaddr_storage* addr);
   ~tcp_client();
-  int write_msg(const char* msg);
+  int send_msg(const char* msg);
+  int receive_msg(char* msg);
 };
