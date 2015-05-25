@@ -16,7 +16,6 @@ void Controller::run()
 {
     while(!isFinished())
     {
-        std::cout<<"Con"<<endl;
         Event* event = event_queue->pop();
         ControllerStrategy* strategy =
                 strategyMap[std::type_index(typeid(*event))];
