@@ -1,4 +1,3 @@
-
 #include <typeindex>
 #include <iostream>
 #include <utility>
