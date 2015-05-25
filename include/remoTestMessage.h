@@ -11,7 +11,6 @@
 #include <iostream>
 
 class remoTestMessage{
-    enum Ttype {REQUEST, RESPONSE}type;
     struct Ttool{
         std::string stringTool[4] = {"iperf", "ping", "ethstats", "stop"};
         enum toolenum{
@@ -20,13 +19,17 @@ class remoTestMessage{
     }tool;
     std::string toolToString(int t){return tool.stringTool[t];}
 public:
+    enum Ttype {REQUEST, RESPONSE}type;
     std::string toolName;
     std::string options;
 
 public:
+    remoTestMessage(){};
     remoTestMessage(char*);
     ~remoTestMessage(){};
     std::string getCommand();
+    std::string getResponse();
+    int getToolId();
 };
 
 
