@@ -30,12 +30,6 @@ void StringStrategy::react(Event* event)
     StringEvent* stringEven = dynamic_cast<StringEvent*>(event);
 }
 
-ControllerStrategy::ControllerStrategy()
-{
+ControllerStrategy::ControllerStrategy(){}
 
-}
-
-void ControllerStrategy::react(Event* event)
-{
-
-}
+void ControllerStrategy::react(Event* event){}

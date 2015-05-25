@@ -13,12 +13,6 @@ string StringEvent::getMessage()
     return message;
 }
 
-Event::~Event()
-{
+Event::~Event() {}
 
-}
-
-StringEvent::~StringEvent()
-{
-
-}
+StringEvent::~StringEvent(){}
