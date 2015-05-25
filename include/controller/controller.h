@@ -8,9 +8,10 @@
 class ControllerStrategy;
 
 #include "event_queue.hpp"
+#include "../utils/thread.hpp"
 
 
-class Controller
+class Controller : public Thread
 {
 private:
     EventQueue* const event_queue;
@@ -18,7 +19,7 @@ private:
 
 public:
     Controller(EventQueue* const);
-    void handle_events();
+    virtual void run();
 };
 
 

@@ -13,13 +13,14 @@ Controller::Controller(EventQueue* const event_queue) : event_queue(event_queue)
             (std::type_index(typeid(StringEvent)), new StringStrategy()));
 }
 
-void Controller::handle_events()
+void Controller::run()
 {
-    while(true)
+    while(!isFinished())
     {
+        std::cout<<"Con"<<endl;
         Event* event = event_queue->pop();
         ControllerStrategy* strategy =
-            strategyMap[std::type_index(typeid(*event))];
+                strategyMap[std::type_index(typeid(*event))];
         strategy->react(event);
     }
 }
