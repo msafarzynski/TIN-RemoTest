@@ -8,6 +8,7 @@
 Timer::Timer(Event * event, BlockingQueue<Event> * queue, long milliseconds):
         Thread(), milliseconds(milliseconds), queue(queue), event(event)
 {
+    this->start();
 }
 
 void Timer::run()
