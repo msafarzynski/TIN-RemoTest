@@ -14,7 +14,7 @@ class tcp_server{
 	struct sockaddr_storage server;
 	int sockfd, msgsock;
 public:
-	tcp_server(struct sockaddr_storage* server_addr, struct sockaddr_storage* client_addr);		//tworzy serwer tcp (laczy sie z podanym adresem ip)
+	tcp_server();		//tworzy serwer tcp (laczy sie z podanym adresem ip)
 	tcp_server();
 	~tcp_server();					//zamyka wczesniej utworzony port
 	int send_msg(const char* msg);	
