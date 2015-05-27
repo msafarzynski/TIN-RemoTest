@@ -19,14 +19,6 @@ public:
 	int send_msg(const char* msg);
 	int receive_msg(char* msg);
 	int kill_process();
+	void execute();
 };
-
-struct Targs{				//struktura przechowujaca argumenty dla funkcji watku
-	FILE* pipe;
-	agent* agent1;
-	remoTestMessage message;
-};
-
-void* get_output(void*);		//dla podanego Targs zwraca wynik skryptu
-
 #endif
