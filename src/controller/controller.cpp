@@ -26,6 +26,7 @@ void Controller::run()
 void StringStrategy::react(Event* event)
 {
     StringEvent* stringEven = dynamic_cast<StringEvent*>(event);
+    std::cout<<"StringEvent: "<<stringEven->getMessage()<<endl;
 }
 
 ControllerStrategy::ControllerStrategy(){}
