@@ -8,22 +8,28 @@ tcp_client::tcp_client(struct sockaddr_storage* addr){
 	hints.ai_family = AF_UNSPEC;
 	hints.ai_socktype = SOCK_STREAM;
 
-	if(getaddrinfo(server, hisservice, &hints, &res) != 0){
-		perror("error getaddrinfo");
+	int s = getaddrinfo("192.168.2.136", "3490", &hints, &result);
+	if (s != 0) {
+		perror(gai_strerror(s));
 		return;
 	}
-
-	sockfd = socket(res->ai_family, SOCK_STREAM, 0);
-	if (sockfd == -1){
-		perror("Cannot create socket");
-		return;
+	for (rp = result; rp != NULL; rp = rp->ai_next) {
+		sockfd = socket(rp->ai_family, rp->ai_socktype,
+					 rp->ai_protocol);
+		if (sockfd == -1)
+			continue;
+		if (connect(sockfd, rp->ai_addr, rp->ai_addrlen) != -1)
+			break;                  /* Success */
+		close(sockfd);
 	}
 
-	if(connect(sockfd, (struct sockaddr*)&server, sizeof(struct sockaddr))==-1){
-			perror("connecting stream socket");
-			close(sockfd);
-			return;
+		if (rp == NULL) {               /* No address succeeded */
+			fprintf(stderr, "Could not connect\n");
+			exit(EXIT_FAILURE);
 		}
+
+		freeaddrinfo(result);           /* No longer needed */
+	std::cout << "Connected to server" << std::endl;
 
 }
 
