@@ -5,15 +5,15 @@
 #include "event_queue.hpp"
 #include "../utils/thread.hpp"
 
-class Timer: Thread
+class Timer: public Thread
 {
 public:
-    Timer(Event*, BlockingQueue<Event>*, long);
+    Timer(Event*, EventQueue*, long);
     virtual void run();
 private:
     long const milliseconds;
     Event* const event;
-    BlockingQueue<Event>* const queue;
+    EventQueue* const queue;
 };
 
 #endif //TIN_REMOTEST_TIMER_H

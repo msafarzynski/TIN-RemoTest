@@ -5,16 +5,15 @@
 #include "../../include/controller/event_queue.hpp"
 #include "../../include/controller/timer.h"
 
-Timer::Timer(Event * event, BlockingQueue<Event> * queue, long milliseconds):
+Timer::Timer(Event * event, EventQueue * queue, long milliseconds):
         Thread(), milliseconds(milliseconds), queue(queue), event(event)
 {
-    this->start();
 }
 
 void Timer::run()
 {
     std::chrono::milliseconds duration(this->milliseconds);
     std::this_thread::sleep_for(duration);
-    this->queue->push(*this->event);
+    this->queue->push(this->event);
     this->finish();
 }
