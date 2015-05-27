@@ -9,13 +9,13 @@
 #include <signal.h>
 #include <pthread.h>
 
-class agent{
+class Agent {
 	tcp_server tcp_module;
 	pid_t command_pid;
 	pthread_t thread;
 public:
-	agent();
-	~agent();
+	Agent();
+	~Agent();
 	int send_msg(const char* msg);
 	int receive_msg(char* msg);
 	int kill_process();

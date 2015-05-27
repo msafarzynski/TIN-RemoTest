@@ -1,20 +1,19 @@
-#include "../include/agent.h"
+#include "../../include/agent/agent.h"
 
-agent::agent(){
-
-	
+Agent::Agent()
+{
 }
 
-agent::~agent(){
-
+Agent::~Agent()
+{
 }
 
-int agent::send_msg(const char *msg) {
+int Agent::send_msg(const char *msg) {
 	tcp_module.send_msg(msg);
-    	std::cout << "Response----------------" << std::endl << msg << std::endl;
+    std::cout << "Response----------------" << std::endl << msg << std::endl;
 }
 
-int agent::receive_msg(char *msg) {
+int Agent::receive_msg(char *msg) {
     if(tcp_module.receive_msg(msg) > 0)
        return 1;
     if(msg == NULL){
@@ -50,7 +49,6 @@ int agent::receive_msg(char *msg) {
 
     std::cout << "Command running..." << std::endl;
     return 0;
-
 }
 
 
@@ -72,9 +70,8 @@ void* get_output(void* args){
     pthread_exit(nullptr);
 }
 
-int agent::kill_process(){
+int Agent::kill_process(){
     kill(command_pid, SIGINT);
     std::cout << "Process killed" << std::endl;
     return 0;
 }
-
