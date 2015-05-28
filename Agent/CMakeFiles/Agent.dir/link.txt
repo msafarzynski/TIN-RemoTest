@@ -1,1 +1,0 @@
-/usr/bin/c++    -std=c++11    CMakeFiles/Agent.dir/main.cpp.o CMakeFiles/Agent.dir/src/agent.cpp.o CMakeFiles/Agent.dir/src/remoTestMessage.cpp.o CMakeFiles/Agent.dir/src/tcp_server.cpp.o  -o Agent -rdynamic 
