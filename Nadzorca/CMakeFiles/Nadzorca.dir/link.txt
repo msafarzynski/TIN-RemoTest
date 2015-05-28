@@ -1,0 +1,1 @@
+/usr/bin/c++    -std=c++11    CMakeFiles/Nadzorca.dir/main.cpp.o CMakeFiles/Nadzorca.dir/src/nadzorca.cpp.o CMakeFiles/Nadzorca.dir/src/remoTestMessage.cpp.o CMakeFiles/Nadzorca.dir/src/tcp_client.cpp.o CMakeFiles/Nadzorca.dir/src/FileParser.cpp.o  -o Nadzorca -rdynamic 
