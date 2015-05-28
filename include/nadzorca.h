@@ -1,32 +1,20 @@
-#ifndef TIN_NADZORCA_H
-#define TIN_NADZORCA_H
+//
+// Created by agata on 26.05.15.
+//
 
-#include "remoTestMessage.h"
-#include "tcp_client.h"
-#include <string>
-#include <cstdio>
-#include <cstdlib>
-#include <signal.h>
-#include <pthread.h>
+#ifndef NADZORCA_NADZORCA_H
+#define NADZORCA_NADZORCA_H
+
+
+#include "../include/tcp_client.h"
+#include "../include/FileParser.h"
+#include <vector>
 
 class nadzorca{
-	tcp_server tcp_module;
-	pid_t command_pid;
-	pthread_t thread;
+    std::vector<tcp_client> tcp_modules;
 public:
-	nadzorca();
-	~nadzorca();
-	int send_msg(const char* msg);
-	int receive_msg(char* msg);
-	int kill_process();
+    nadzorca(std::string confFileName);
+    ~nadzorca(){};
 };
 
-struct Targs{				//struktura przechowujaca argumenty dla funkcji watku
-	FILE* pipe;
-	agent* agent1;
-	remoTestMessage message;
-};
-
-void* get_output(void*);		//dla podanego Targs zwraca wynik skryptu
-
-#endif
+#endif //NADZORCA_NADZORCA_H
