@@ -2,6 +2,7 @@
 #include "../../include/agent/agent_controller.h"
 #include "../../include/controller/event_queue.hpp"
 
+
 AgentController::AgentController(EventQueue * const event_queue): Controller(event_queue)
 {
     this->strategyMap.insert(std::make_pair<std::type_index, StartExecutionStrategy*>
@@ -11,7 +12,6 @@ AgentController::AgentController(EventQueue * const event_queue): Controller(eve
                                       new StartExecutionAtTimeStrategy()));
 
 }
-
 
 void StartExecutionStrategy::react(Event *event)
 {
