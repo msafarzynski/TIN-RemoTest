@@ -15,3 +15,12 @@ string StringEvent::getMessage()
 {
     return message;
 }
+
+StartExecutionEventAtTime::StartExecutionEventAtTime(time_t time) : time(time)
+{
+}
+
+std::time_t StartExecutionEventAtTime::get_time()
+{
+    return time;
+}
