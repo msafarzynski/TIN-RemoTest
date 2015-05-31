@@ -15,7 +15,6 @@ class tcp_server{
 	int sockfd, msgsock;
 public:
 	tcp_server();		//tworzy serwer tcp (laczy sie z podanym adresem ip)
-	tcp_server();
 	~tcp_server();					//zamyka wczesniej utworzony port
 	int send_msg(const char* msg);	
 	int receive_msg(char* msg);		
