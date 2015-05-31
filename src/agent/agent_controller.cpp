@@ -3,7 +3,8 @@
 #include "../../include/controller/event_queue.hpp"
 
 
-AgentController::AgentController(EventQueue * const event_queue): Controller(event_queue)
+AgentController::AgentController(EventQueue * const event_queue, AgentModel* model):
+        Controller(event_queue), model(model)
 {
     this->strategyMap.insert(std::make_pair<std::type_index, StartExecutionStrategy*>
                                      (std::type_index(typeid(StartExecutionEvent)), new StartExecutionStrategy()));

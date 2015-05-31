@@ -1,4 +1,5 @@
 #include "../controller/controller.h"
+#include "../model/agent_model.h"
 
 #ifndef TIN_REMOTEST_AGENT_CONTROLLER_H
 #define TIN_REMOTEST_AGENT_CONTROLLER_H
@@ -6,7 +7,9 @@
 class AgentController : public Controller
 {
 public:
-    AgentController(EventQueue* const);
+    AgentController(EventQueue* const, AgentModel* const);
+private:
+    const AgentModel * const model;
 };
 
 
