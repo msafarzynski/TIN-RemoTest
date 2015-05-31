@@ -26,4 +26,11 @@ public:
     virtual void react(Event * event);
 };
 
+
+class UpdateScriptStrategy: public ControllerStrategy
+{
+public:
+    virtual void react(Event * event);
+};
+
 #endif //TIN_REMOTEST_AGENT_CONTROLLLER_H
