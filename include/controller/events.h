@@ -5,11 +5,14 @@
 #define EVENTS_H
 
 using namespace std;
+
+
 class Event
 {
 public:
     virtual ~Event();
 };
+
 
 class StringEvent: public Event
 {
@@ -21,9 +24,11 @@ public:
     StringEvent(string message);
 };
 
+
 class StartExecutionEvent: public Event
 {
 };
+
 
 class StartExecutionAtTimeEvent: public Event
 {
