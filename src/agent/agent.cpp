@@ -11,10 +11,17 @@ Agent::Agent()
 int main() {
     std::cout << "Hello, World!" << std::endl;
     EventQueue* queue = new EventQueue();
-    AgentController* controller = new AgentController(queue);
+    AgentModel* model = new AgentModel();
+    AgentController* controller = new AgentController(queue, model);
 
-    Timer* timer = new Timer(dynamic_cast<Event*>(new StringEvent(string("mess"))), queue, 2000);
+    std::time_t result = std::time(0);
+    std::cout << std::asctime(std::localtime(&result))
+    << result << " seconds since the Epoch\n";
+
+    Timer* timer = new Timer(dynamic_cast<Event*>(new StringEvent(string("mess"))), queue, 200);
     timer->start();
+    Timer* timer2 = new Timer(dynamic_cast<Event*>(new StartExecutionEventAtTime(result)), queue, 2000);
+    timer2->start();
     controller->run();
     return 0;
 }
