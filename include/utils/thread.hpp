@@ -14,9 +14,8 @@ public:
     void join();
     void stop();
     bool isFinished() const;
-
-protected:
     virtual void run() = 0;
+protected:
     void finish();
 
 private:
