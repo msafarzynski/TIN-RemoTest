@@ -43,7 +43,7 @@ public:
 class UpdateScriptEvent: public Event
 {
 private:
-    const string const script;
+    const string script;
 public:
     UpdateScriptEvent(const string);
     string getScript();
