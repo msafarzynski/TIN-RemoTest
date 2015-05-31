@@ -20,7 +20,7 @@ int main() {
 
     Timer* timer = new Timer(dynamic_cast<Event*>(new StringEvent(string("mess"))), queue, 200);
     timer->start();
-    Timer* timer2 = new Timer(dynamic_cast<Event*>(new StartExecutionEventAtTime(result)), queue, 2000);
+    Timer* timer2 = new Timer(dynamic_cast<Event*>(new StartExecutionAtTimeEvent(result)), queue, 2000);
     timer2->start();
     controller->run();
     return 0;

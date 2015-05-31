@@ -9,7 +9,7 @@ AgentController::AgentController(EventQueue * const event_queue, AgentModel* mod
     this->strategyMap.insert(std::make_pair<std::type_index, StartExecutionStrategy*>
                                      (std::type_index(typeid(StartExecutionEvent)), new StartExecutionStrategy()));
     this->strategyMap.insert(std::make_pair<std::type_index, StartExecutionAtTimeStrategy*>
-                                     (std::type_index(typeid(StartExecutionEventAtTime)),
+                                     (std::type_index(typeid(StartExecutionAtTimeEvent)),
                                       new StartExecutionAtTimeStrategy()));
 
 }
@@ -21,6 +21,6 @@ void StartExecutionStrategy::react(Event *event)
 
 void StartExecutionAtTimeStrategy::react(Event *event)
 {
-    StartExecutionEventAtTime* execution_event = dynamic_cast<StartExecutionEventAtTime*>(event);
+    StartExecutionAtTimeEvent * execution_event = dynamic_cast<StartExecutionAtTimeEvent *>(event);
     std::cout<<"Start at time execution strategy. Time: "<<execution_event->get_time()<<std::endl;
 }

@@ -25,12 +25,12 @@ class StartExecutionEvent: public Event
 {
 };
 
-class StartExecutionEventAtTime: public Event
+class StartExecutionAtTimeEvent: public Event
 {
 private:
     const std::time_t time;
 public:
-    StartExecutionEventAtTime(std::time_t);
+    StartExecutionAtTimeEvent(std::time_t);
     std::time_t get_time();
 };
 
