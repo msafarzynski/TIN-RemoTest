@@ -24,3 +24,12 @@ std::time_t StartExecutionAtTimeEvent::get_time()
 {
     return time;
 }
+
+UpdateScriptEvent::UpdateScriptEvent(string const script): script(script)
+{
+}
+
+string UpdateScriptEvent::getScript()
+{
+    return script;
+}

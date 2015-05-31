@@ -39,4 +39,14 @@ public:
     std::time_t get_time();
 };
 
+
+class UpdateScriptEvent: public Event
+{
+private:
+    const string const script;
+public:
+    UpdateScriptEvent(const string);
+    string getScript();
+};
+
 #endif
