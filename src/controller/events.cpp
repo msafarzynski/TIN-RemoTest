@@ -3,9 +3,8 @@
 #include "../../include/controller/events.h"
 
 
-StringEvent::StringEvent(string message)
+StringEvent::StringEvent(string message): message(message)
 {
-    this->message = message;
 }
 
 string StringEvent::getMessage()

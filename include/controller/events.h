@@ -13,7 +13,7 @@ public:
 class StringEvent: public Event
 {
 private:
-    string message;
+    const string message;
 public:
     virtual ~StringEvent();
     virtual string getMessage();
