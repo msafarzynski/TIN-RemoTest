@@ -13,7 +13,7 @@ class ControllerStrategy;
 
 class Controller : public Thread
 {
-private:
+protected:
     EventQueue* const event_queue;
     std::unordered_map<std::type_index, ControllerStrategy*> strategyMap;
 
