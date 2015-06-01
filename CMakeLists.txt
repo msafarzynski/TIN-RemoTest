@@ -11,6 +11,7 @@ add_executable(TIN_RemoTest ${SOURCE_FILES}
     include/controller/events.h
     include/controller/timer.h
     include/model/agent_model.h
+    include/model/executioner.h
     include/utils/lock.hpp
     include/utils/thread.hpp
     include/utils/scoped_lock.hpp
@@ -20,6 +21,7 @@ add_executable(TIN_RemoTest ${SOURCE_FILES}
     src/controller/timer.cpp
     src/utils/thread.cpp
     src/model/agent_model.cpp
+    src/model/executioner.cpp
     )
 
 find_package(Threads)
