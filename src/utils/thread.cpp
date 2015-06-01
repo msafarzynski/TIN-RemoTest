@@ -4,8 +4,7 @@
 #include "../../include/utils/thread.hpp"
 
 
-Thread::Thread()
-        : finished_(false)
+Thread::Thread(): finished_(false)
 {}
 
 Thread::~Thread()
