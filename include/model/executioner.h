@@ -15,5 +15,6 @@ public:
     void execute();
     void executeScript(std::string);
     void stopExecution();
+    void run();
 };
 #endif //TIN_REMOTEST_EXECUTIONER_H

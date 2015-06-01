@@ -29,3 +29,8 @@ void Executioner::stopExecution()
 {
     //TODO
 };
+
+void Executioner::run()
+{
+    this->execute();
+}
