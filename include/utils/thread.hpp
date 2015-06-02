@@ -2,8 +2,8 @@
 #define TIN_REMOTEST_THREAD_HPP
 
 #include <pthread.h>
-
 #include "lock.hpp"
+
 
 class Thread
 {
