@@ -2,7 +2,7 @@
 #define TIN_REMOTEST_EXECUTIONER_H
 
 #include <string>
-#include "../utils/thread.hpp"
+#include "utils/thread.hpp"
 
 class Executioner: public Thread
 {

@@ -3,7 +3,7 @@
 
 #include "events.h"
 #include "event_queue.hpp"
-#include "../utils/thread.hpp"
+#include "utils/thread.hpp"
 
 class Timer: public Thread
 {

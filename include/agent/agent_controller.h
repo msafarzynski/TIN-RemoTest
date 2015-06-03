@@ -1,8 +1,9 @@
-#include "../controller/controller.h"
-#include "../model/agent_model.h"
-
 #ifndef TIN_REMOTEST_AGENT_CONTROLLER_H
 #define TIN_REMOTEST_AGENT_CONTROLLER_H
+
+#include "controller/controller.h"
+#include "model/agent_model.h"
+
 
 class AgentController : public Controller
 {

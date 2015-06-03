@@ -1,5 +1,5 @@
 #include <iostream>
-#include "../../include/agent/agent_controller.h"
+#include "agent/agent_controller.h"
 
 
 AgentController::AgentController(EventQueue * const event_queue, AgentModel* model):

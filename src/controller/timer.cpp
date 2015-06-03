@@ -1,7 +1,7 @@
 #include <chrono>
 #include <thread>
 
-#include "../../include/controller/timer.h"
+#include "controller/timer.h"
 
 Timer::Timer(Event * event, EventQueue * queue, long milliseconds):
         Thread(), milliseconds(milliseconds), queue(queue), event(event)

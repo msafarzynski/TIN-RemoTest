@@ -1,8 +1,8 @@
 #include <iostream>
-#include "../../include/agent/agent.h"
-#include "../../include/controller/event_queue.hpp"
-#include "../../include/agent/agent_controller.h"
-#include "../../include/controller/timer.h"
+#include "agent/agent.h"
+#include "controller/event_queue.hpp"
+#include "agent/agent_controller.h"
+#include "controller/timer.h"
 
 Agent::Agent()
 {

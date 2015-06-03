@@ -1,7 +1,7 @@
 #ifndef CONTROLLER_H
 #define CONTROLLER_H
 
-#include "../utils/thread.hpp"
+#include "utils/thread.hpp"
 #include "events.h"
 #include "event_queue.hpp"
 

@@ -1,7 +1,7 @@
 #include <cassert>
 
-#include "../../include/utils/scoped_lock.hpp"
-#include "../../include/utils/thread.hpp"
+#include "utils/scoped_lock.hpp"
+#include "utils/thread.hpp"
 
 
 Thread::Thread(): finished_(false)

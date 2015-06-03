@@ -4,6 +4,8 @@ project(TIN_RemoTest)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 
 set(SOURCE_FILES src/agent/agent.cpp)
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include)
+
 add_executable(TIN_RemoTest ${SOURCE_FILES}
     include/agent/agent_controller.h
     include/controller/controller.h

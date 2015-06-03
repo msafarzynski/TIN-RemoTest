@@ -1,5 +1,5 @@
 #include <iostream>
-#include "../../include/controller/controller.h"
+#include "controller/controller.h"
 
 
 Controller::Controller(EventQueue* queue): event_queue(queue)

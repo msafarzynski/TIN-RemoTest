@@ -1,8 +1,8 @@
 #include <string>
 #include <iostream>
 
-#include "../../include/controller/events.h"
-#include "../../include/controller/controller.h"
+#include "controller/events.h"
+#include "controller/controller.h"
 
 Event::~Event() {}
 
