@@ -1,16 +1,18 @@
-#include <string>
-#include <ctime>
-
 #ifndef EVENTS_H
 #define EVENTS_H
 
+#include <string>
+#include <ctime>
+
 using namespace std;
 
+class Controller;
 
 class Event
 {
 public:
     virtual ~Event();
+    virtual void accept(Controller *) = 0;
 };
 
 
@@ -22,6 +24,7 @@ public:
     virtual ~StringEvent();
     virtual string getMessage();
     StringEvent(string message);
+    void accept(Controller*);
 };
 
 
@@ -45,8 +48,9 @@ class UpdateScriptEvent: public Event
 private:
     const string script;
 public:
-    UpdateScriptEvent(const string);
+    UpdateScriptEvent(string);
     string getScript();
+    void accept(Controller*);
 };
 
 #endif

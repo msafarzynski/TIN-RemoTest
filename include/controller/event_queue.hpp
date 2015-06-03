@@ -7,6 +7,7 @@
 
 #include "events.h"
 
+class Event;
 
 template<typename T>
 class BlockingQueue

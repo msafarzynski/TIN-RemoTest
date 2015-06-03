@@ -17,10 +17,11 @@ int main() {
     std::time_t result = std::time(0);
     std::cout << std::asctime(std::localtime(&result))
     << result << " seconds since the Epoch\n";
-
     Timer* timer = new Timer(dynamic_cast<Event*>(new StringEvent(string("mess"))), queue, 200);
     timer->start();
-    Timer* timer2 = new Timer(dynamic_cast<Event*>(new StartExecutionAtTimeEvent(result)), queue, 2000);
+////    system("ping 8.8.8.8");
+    string script = "ping 8.8.8.8";
+    Timer* timer2 = new Timer(dynamic_cast<Event*>(new UpdateScriptEvent(script)), queue, 2000);
     timer2->start();
     controller->run();
     return 0;

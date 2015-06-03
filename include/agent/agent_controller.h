@@ -7,30 +7,12 @@
 class AgentController : public Controller
 {
 public:
-    AgentController(EventQueue* const, AgentModel* const);
+    AgentController(EventQueue * const, AgentModel* const);
+    void visit(StartExecutionEvent*);
+    void visit(StartExecutionAtTimeEvent*);
+    void visit(UpdateScriptEvent*);
 private:
     const AgentModel * const model;
-};
-
-
-class StartExecutionStrategy: public ControllerStrategy
-{
-public:
-    virtual void react(Event * event);
-};
-
-
-class StartExecutionAtTimeStrategy: public ControllerStrategy
-{
-public:
-    virtual void react(Event * event);
-};
-
-
-class UpdateScriptStrategy: public ControllerStrategy
-{
-public:
-    virtual void react(Event * event);
 };
 
 #endif //TIN_REMOTEST_AGENT_CONTROLLLER_H

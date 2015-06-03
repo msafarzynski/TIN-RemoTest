@@ -1,8 +1,6 @@
 #include <chrono>
 #include <thread>
 
-#include "../../include/controller/events.h"
-#include "../../include/controller/event_queue.hpp"
 #include "../../include/controller/timer.h"
 
 Timer::Timer(Event * event, EventQueue * queue, long milliseconds):

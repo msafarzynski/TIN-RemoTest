@@ -1,7 +1,8 @@
 #include <string>
+#include <iostream>
 
 #include "../../include/controller/events.h"
-
+#include "../../include/controller/controller.h"
 
 Event::~Event() {}
 
@@ -16,6 +17,11 @@ string StringEvent::getMessage()
     return message;
 }
 
+void StringEvent::accept(Controller * controller)
+{
+    controller->visit(this);
+}
+
 StartExecutionAtTimeEvent::StartExecutionAtTimeEvent(time_t time) : time(time)
 {
 }
@@ -25,11 +31,16 @@ std::time_t StartExecutionAtTimeEvent::get_time()
     return time;
 }
 
-UpdateScriptEvent::UpdateScriptEvent(string const script): script(script)
+UpdateScriptEvent::UpdateScriptEvent(string script): script(script)
 {
 }
 
 string UpdateScriptEvent::getScript()
 {
     return script;
+}
+
+void UpdateScriptEvent::accept(Controller * controller)
+{
+    controller->visit(this);
 }

@@ -1,39 +1,21 @@
 #ifndef CONTROLLER_H
 #define CONTROLLER_H
 
-#include <unordered_map>
-#include <typeinfo>
-#include <typeindex>
-
-class ControllerStrategy;
-
-#include "event_queue.hpp"
 #include "../utils/thread.hpp"
+#include "events.h"
+#include "event_queue.hpp"
 
 
 class Controller : public Thread
 {
 protected:
-    EventQueue* const event_queue;
-    std::unordered_map<std::type_index, ControllerStrategy*> strategyMap;
+    EventQueue* event_queue;
 
 public:
-    Controller(EventQueue* const);
+    Controller(EventQueue*);
     virtual void run();
+    void visit(StringEvent* event);
+    void visit(UpdateScriptEvent* event);
 };
 
-
-class ControllerStrategy
-{
-public:
-    virtual void react(Event* event);
-    ControllerStrategy();
-};
-
-
-class StringStrategy: public ControllerStrategy
-{
-public:
-    virtual void react(Event* event);
-};
 #endif
