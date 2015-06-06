@@ -11,7 +11,7 @@ add_executable(TIN_RemoTest ${SOURCE_FILES}
     include/controller/controller.h
     include/controller/event_queue.hpp
     include/controller/events.h
-    include/controller/timer.h
+    include/controller/timer.hpp
     include/model/agent_model.h
     include/model/executioner.h
     include/utils/lock.hpp
@@ -20,7 +20,6 @@ add_executable(TIN_RemoTest ${SOURCE_FILES}
     src/agent/agent_controller.cpp
     src/controller/controller.cpp
     src/controller/events.cpp
-    src/controller/timer.cpp
     src/utils/thread.cpp
     src/model/agent_model.cpp
     src/model/executioner.cpp
