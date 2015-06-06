@@ -17,7 +17,7 @@ public:
     void visit(UpdateScriptEvent*);
     void run();
 private:
-    const AgentModel * const model;
+    AgentModel * const model;
 };
 
 #endif //TIN_REMOTEST_AGENT_CONTROLLLER_H
