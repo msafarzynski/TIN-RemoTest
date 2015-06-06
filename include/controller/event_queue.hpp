@@ -8,6 +8,7 @@
 #include "events.h"
 
 class Event;
+class AgentEvent;
 
 template<typename T>
 class BlockingQueue
@@ -39,6 +40,7 @@ public:
     }
 };
 
+typedef BlockingQueue<AgentEvent*> AgentQueue;
 typedef BlockingQueue<Event*> EventQueue;
 
 #endif

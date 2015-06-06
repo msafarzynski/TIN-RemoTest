@@ -1,8 +1,7 @@
 #include <string>
 #include <iostream>
+#include <agent/agent_controller.h>
 
-#include "controller/events.h"
-#include "controller/controller.h"
 
 Event::~Event() {}
 
@@ -40,7 +39,7 @@ string UpdateScriptEvent::getScript()
     return script;
 }
 
-void UpdateScriptEvent::accept(Controller * controller)
+void UpdateScriptEvent::accept(AgentController * controller)
 {
     controller->visit(this);
 }

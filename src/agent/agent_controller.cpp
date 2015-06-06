@@ -2,8 +2,19 @@
 #include "agent/agent_controller.h"
 
 
-AgentController::AgentController(EventQueue * const event_queue, AgentModel* model):
-        Controller(event_queue), model(model)
+void AgentController::run()
+{
+    while(!isFinished())
+    {
+        AgentEvent* event = agent_queue->pop();
+        event->accept(this);
+        delete event;
+    }
+
+}
+
+AgentController::AgentController(AgentQueue * const agent_queue, AgentModel* model):
+        agent_queue(agent_queue), model(model)
 {
 }
 

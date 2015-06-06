@@ -8,8 +8,8 @@ class AgentModel
 public:
     AgentModel(Executioner*);
     AgentModel();
-//    void updateScript(std::string);
-//    std::string getScript();
+    void updateScript(std::string);
+    std::string getScript();
 //    void execute();
 private:
     Executioner* executioner;

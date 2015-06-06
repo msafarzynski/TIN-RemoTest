@@ -9,13 +9,12 @@
 class Controller : public Thread
 {
 protected:
-    EventQueue* event_queue;
+    EventQueue * event_queue;
 
 public:
-    Controller(EventQueue*);
+    Controller(EventQueue *);
     virtual void run();
     void visit(StringEvent* event);
-    void visit(UpdateScriptEvent* event);
 };
 
 #endif

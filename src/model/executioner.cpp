@@ -14,6 +14,11 @@ void Executioner::updateScript(std::string script)
     this->script=script;
 };
 
+std::string Executioner::getSctipt()
+{
+    return script;
+}
+
 void Executioner::execute()
 {
     // TODO

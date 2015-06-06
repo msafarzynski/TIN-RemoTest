@@ -5,13 +5,17 @@
 #include "model/agent_model.h"
 
 
-class AgentController : public Controller
+class AgentController : public Thread
 {
+protected:
+    AgentQueue * agent_queue;
+
 public:
-    AgentController(EventQueue * const, AgentModel* const);
+    AgentController(AgentQueue * const, AgentModel* const);
     void visit(StartExecutionEvent*);
     void visit(StartExecutionAtTimeEvent*);
     void visit(UpdateScriptEvent*);
+    void run();
 private:
     const AgentModel * const model;
 };

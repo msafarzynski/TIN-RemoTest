@@ -8,3 +8,13 @@ AgentModel::AgentModel()
 {
     this->executioner = new Executioner();
 }
+
+void AgentModel::updateScript(std::string script)
+{
+    executioner->updateScript(script);
+}
+
+std::string AgentModel::getScript()
+{
+    return executioner->getSctipt();
+}

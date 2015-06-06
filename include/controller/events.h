@@ -7,12 +7,22 @@
 using namespace std;
 
 class Controller;
+class AgentController;
+
 
 class Event
 {
 public:
     virtual ~Event();
     virtual void accept(Controller *) = 0;
+};
+
+
+class AgentEvent
+{
+public:
+    virtual ~AgentEvent(){};
+    virtual void accept(AgentController *) = 0;
 };
 
 
@@ -43,14 +53,14 @@ public:
 };
 
 
-class UpdateScriptEvent: public Event
+class UpdateScriptEvent: public AgentEvent
 {
 private:
     const string script;
 public:
     UpdateScriptEvent(string);
     string getScript();
-    void accept(Controller*);
+    void accept(AgentController*);
 };
 
 #endif

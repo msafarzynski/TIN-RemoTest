@@ -12,6 +12,7 @@ public:
     Executioner();
     Executioner(std::string);
     void updateScript(std::string);
+    std::string getSctipt();
     void execute();
     void executeScript(std::string);
     void stopExecution();
