@@ -30,5 +30,5 @@ void AgentController::visit(StartExecutionAtTimeEvent * event)
 
 void AgentController::visit(UpdateScriptEvent * event)
 {
-    std::cout<<"Update script: "<<event->getScript()<<std::endl;
+    model->updateScript(event->getScript());
 }
