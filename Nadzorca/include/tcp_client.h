@@ -13,12 +13,13 @@
 
 class tcp_client{
 	struct sockaddr_storage server;
-	int sockfd;
+	int sockfd = -1;
 public:
 	tcp_client(struct sockaddr_storage* addr);		//tworzy klienta tcp (laczy sie z podanym adresem ip)
 	tcp_client();
 	~tcp_client();					//zamyka wczesniej utworzony port
-	int send_msg(const char* msg);			
+	int send_msg(const char* msg);
 	int receive_msg(char* msg);
-	char* getIp();
+	std::string getIp();
+	bool isConnected();
 };

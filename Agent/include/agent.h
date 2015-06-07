@@ -13,20 +13,24 @@
 #include <cstdlib>
 #include <signal.h>
 #include <pthread.h>
+#include <unistd.h>
 
 class agent{
 	tcp_server tcp_module;
-	pid_t command_pid = -1;
+	int command_pid = -1;
 	pthread_t thread;
+	FILE* file;
 public:
 	agent();
 	~agent();
-	int send_msg(const char*);
+	tcp_server* getTcpModule(){ return &tcp_module; };
 	int receive_msg(char*);
 	int kill_process();
 	void execute();
 };
 
+
+void* send_msg(void*);
 
 #endif
 

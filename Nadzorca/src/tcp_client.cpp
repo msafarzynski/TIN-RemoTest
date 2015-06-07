@@ -4,9 +4,8 @@
 tcp_client::tcp_client(struct sockaddr_storage* addr){
 	struct addrinfo hints;
 	struct addrinfo *result, *rp;
-	char *server;
 	int error;
-
+	server = *addr;
 	memset(&hints, 0, sizeof(hints));
 	/* set-up hints structure */
 	hints.ai_family = PF_UNSPEC;
@@ -17,16 +16,15 @@ tcp_client::tcp_client(struct sockaddr_storage* addr){
 	int port1;
 	switch (addr->ss_family) {
 		case AF_INET:
-			inet_ntop(addr->ss_family, &((struct sockaddr_in *)addr)->sin_addr, ip, 256);
+			inet_ntop(addr->ss_family, &((struct sockaddr_in *)&server)->sin_addr, ip, 256);
 			port1 = ((struct sockaddr_in *)addr)->sin_port;
 			break;
 		case AF_INET6:
-			inet_ntop(addr->ss_family, &((struct sockaddr_in6 *)addr)->sin6_addr, ip, 256);
+			inet_ntop(addr->ss_family, &((struct sockaddr_in6 *)&server)->sin6_addr, ip, 256);
 			port1 = ((struct sockaddr_in6 *)addr)->sin6_port;
 			break;
 	}
 	sprintf(port, "%d", port1);
-	std::cout << port << std::endl;
 	s = getaddrinfo(ip, port, &hints, &result);
 	if (s != 0) {
 		perror(gai_strerror(s));
@@ -39,12 +37,12 @@ tcp_client::tcp_client(struct sockaddr_storage* addr){
 			continue;
 		if (connect(sockfd, rp->ai_addr, rp->ai_addrlen) != -1)
 			break;                  /* Success */
-		close(sockfd);
 	}
 
 		if (rp == NULL) {               /* No address succeeded */
 			fprintf(stderr, "Could not connect\n");
-			exit(EXIT_FAILURE);
+			sockfd=-1;
+			return;
 		}
 
 		freeaddrinfo(result);           /* No longer needed */
@@ -52,12 +50,20 @@ tcp_client::tcp_client(struct sockaddr_storage* addr){
 
 }
 
-char* tcp_client::getIp(){
+bool tcp_client::isConnected() {
+	return sockfd!=-1?true:false;
+}
 
+std::string tcp_client::getIp(){
+	char ip[256];
+	if(server.ss_family == AF_INET)
+		inet_ntop(server.ss_family, &((struct sockaddr_in *)&server)->sin_addr, ip, sizeof ip);
+	else
+		inet_ntop(server.ss_family, &((struct sockaddr_in6 *)&server)->sin6_addr, ip, sizeof ip);
+	return std::string(ip);
 }
 
 tcp_client::~tcp_client(){
-	close(sockfd);
 }
 
 int tcp_client::send_msg(const char* msg){

@@ -15,6 +15,9 @@ class nadzorca{
 public:
     nadzorca(std::string confFileName);
     ~nadzorca(){};
+    void showAgentsIps();
+    int send_script(std::string fileName, int);
+    int stopScript(int);
 };
 
 #endif //NADZORCA_NADZORCA_H

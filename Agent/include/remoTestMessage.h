@@ -12,14 +12,12 @@
 
 struct remoTestMessage{
     uint32_t size = 0;
-    char data[1016];
+    char data[1015];
     enum Ttype{STOP, START_SCRIPT, SCRIPT, START_RESULT, RESULT}type;
     remoTestMessage(const char*);
     remoTestMessage(){};
     ~remoTestMessage(){};
-    std::string getCommand();               //zmienia otrzymany komunikat w komende shellowa (+dopisuje & echo $! zeby dostac id processu)
-    std::string getResponse();
-    int getToolId();
+    std::string getStringMessage();
 };
 
 

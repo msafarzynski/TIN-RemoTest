@@ -10,12 +10,9 @@ int FileParser::parseAddress(char* addressAsText, Host* nextHost) //zwraca 1 - s
     in6_addr buf6;
     char port[4];
     int spacePos = (int)(strchr(addressAsText, ' ')-addressAsText);
-    std::cout << spacePos << std::endl;
     char* ip = new char[spacePos];
     strncpy(ip, addressAsText, spacePos);
-    std::cout << ip << std::endl;
     strncpy(port, addressAsText+spacePos+1, 4);
-    std::cout << port << std::endl;
     if (inet_pton(AF_INET,ip,&buf) == 1) //sprawdza, czy mamy poprawny adres IPv4 i zapisuje go w buf
     {
         nextHost->ss_family=AF_INET;

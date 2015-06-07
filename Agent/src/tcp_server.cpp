@@ -63,6 +63,7 @@ int tcp_server::accept_conn(){
 		return 1;
 	}
 	std::cout << "Connection accepted" << std::endl;
+	return 0;
 }
 
 int tcp_server::send_msg(const char* msg){
@@ -79,7 +80,7 @@ int tcp_server::receive_msg(char* msg){
 		perror("NULL buffer");
 		return -1;
 	}
-	if((rval = recv(msgsock, msg, sizeof(msg), 0)) == -1){
+	if((rval = recv(msgsock, msg, 1024, 0)) == -1){
 		perror("Reading stream message");
 		close(msgsock);
 		return -1;
@@ -89,8 +90,6 @@ int tcp_server::receive_msg(char* msg){
 		close(msgsock);
 		return 0;
 	}
-	else
-		printf("Message --> %s\n", msg);
 	return sizeof(msg);
 }
 
