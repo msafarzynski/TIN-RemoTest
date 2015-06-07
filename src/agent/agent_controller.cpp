@@ -58,3 +58,8 @@ long AgentController::getSecondsUntil(time_t time)
 {
     return time - getCurrentTime();
 }
+
+void AgentController::visit(UpdateTimeDifferenceEvent * event)
+{
+    timeDifference = getSecondsUntil(event->getTime());
+}

@@ -80,4 +80,15 @@ public:
     void accept(AgentController*);
 };
 
+
+class UpdateTimeDifferenceEvent: public AgentEvent
+{
+private:
+    const std::time_t time;
+public:
+    void accept(AgentController*);
+    UpdateTimeDifferenceEvent(std::time_t);
+    std::time_t getTime();
+};
+
 #endif

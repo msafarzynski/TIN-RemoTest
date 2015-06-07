@@ -63,3 +63,17 @@ void PrintExecutionResultsEvent::accept(AgentController * controller)
 {
     controller->visit(this);
 }
+
+UpdateTimeDifferenceEvent::UpdateTimeDifferenceEvent(std::time_t time): time(time)
+{
+}
+
+void UpdateTimeDifferenceEvent::accept(AgentController * controller)
+{
+    controller->visit(this);
+}
+
+std::time_t UpdateTimeDifferenceEvent::getTime()
+{
+    return time;
+}

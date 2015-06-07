@@ -18,6 +18,7 @@ public:
     void visit(StopExecutionEvent*);
     void visit(UpdateScriptEvent*);
     void visit(PrintExecutionResultsEvent*);
+    void visit(UpdateTimeDifferenceEvent*);
     void run();
 private:
     AgentModel * const model;
