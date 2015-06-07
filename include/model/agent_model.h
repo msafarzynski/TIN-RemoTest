@@ -10,7 +10,8 @@ public:
     AgentModel();
     void updateScript(std::string);
     std::string getScript();
-//    void execute();
+    void execute();
+    std::string getExecutionResult();
 private:
     Executioner* executioner;
 };

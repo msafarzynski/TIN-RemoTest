@@ -18,3 +18,13 @@ std::string AgentModel::getScript()
 {
     return executioner->getScript();
 }
+
+void AgentModel::execute()
+{
+    executioner->execute();
+}
+
+std::string AgentModel::getExecutionResult()
+{
+    return executioner->getResult();
+}

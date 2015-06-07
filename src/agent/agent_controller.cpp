@@ -20,7 +20,7 @@ AgentController::AgentController(AgentQueue * const agent_queue, AgentModel* mod
 
 void AgentController::visit(StartExecutionEvent * event)
 {
-    std::cout<<"Start Execution"<<std::endl;
+    model->execute();
 }
 
 void AgentController::visit(StartExecutionAtTimeEvent * event)
