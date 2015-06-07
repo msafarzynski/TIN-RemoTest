@@ -21,7 +21,7 @@ std::string AgentModel::getScript()
 
 void AgentModel::execute()
 {
-    executioner->execute();
+    executioner->start();
 }
 
 std::string AgentModel::getExecutionResult()
@@ -31,5 +31,5 @@ std::string AgentModel::getExecutionResult()
 
 void AgentModel::stopExecution()
 {
-    executioner->stopExecution();
+    executioner->stop();
 }
