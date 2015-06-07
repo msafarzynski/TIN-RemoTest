@@ -4,18 +4,20 @@
 #include <string>
 #include "utils/thread.hpp"
 
-class Executioner: public Thread
+class Executioner
 {
 private:
     std::string script;
+    std::string result;
+    bool run = false;
 public:
     Executioner();
     Executioner(std::string);
     void updateScript(std::string);
-    std::string getSctipt();
+    std::string getScript();
+    std::string getResult();
     void execute();
     void executeScript(std::string);
     void stopExecution();
-    void run();
 };
 #endif //TIN_REMOTEST_EXECUTIONER_H

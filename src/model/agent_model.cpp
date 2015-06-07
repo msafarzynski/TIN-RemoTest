@@ -16,5 +16,5 @@ void AgentModel::updateScript(std::string script)
 
 std::string AgentModel::getScript()
 {
-    return executioner->getSctipt();
+    return executioner->getScript();
 }
