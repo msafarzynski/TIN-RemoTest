@@ -17,9 +17,10 @@ int main() {
     std::time_t result = std::time(0);
     std::cout << std::asctime(std::localtime(&result))
     << result << " seconds since the Epoch\n";
-    string script = "ping 8.8.8.8";
-    AgentTimer* timer = new AgentTimer(dynamic_cast<AgentEvent*>(new UpdateScriptEvent(script)), queue, 2000);
-    timer->start();
+    string script = "ls";
+    queue->push(new UpdateScriptEvent(script));
+    queue->push(new StartExecutionEvent());
+
     controller->run();
     return 0;
 }
