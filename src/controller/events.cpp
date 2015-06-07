@@ -43,3 +43,8 @@ void UpdateScriptEvent::accept(AgentController * controller)
 {
     controller->visit(this);
 }
+
+void StartExecutionEvent::accept(AgentController * controller)
+{
+    controller->visit(this);
+}

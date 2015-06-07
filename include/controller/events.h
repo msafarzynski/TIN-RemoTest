@@ -38,8 +38,10 @@ public:
 };
 
 
-class StartExecutionEvent: public Event
+class StartExecutionEvent: public AgentEvent
 {
+public:
+    void accept(AgentController*);
 };
 
 
