@@ -2,6 +2,7 @@
 #define TIN_REMOTEST_TIMER_H
 
 #include <thread>
+#include <assert.h>
 #include "events.h"
 #include "event_queue.hpp"
 #include "utils/thread.hpp"
@@ -13,6 +14,7 @@ public:
     Timer(T event, BlockingQueue<T> * queue, long milliseconds): Thread(), milliseconds(milliseconds), queue(queue), event(event){};
     virtual void run()
     {
+        assert(milliseconds>=0);
         std::chrono::milliseconds duration(this->milliseconds);
         std::this_thread::sleep_for(duration);
         this->queue->push(this->event);
