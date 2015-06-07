@@ -55,6 +55,13 @@ public:
 };
 
 
+class StopExecutionEvent: public AgentEvent
+{
+public:
+    void accept(AgentController*);
+};
+
+
 class UpdateScriptEvent: public AgentEvent
 {
 private:

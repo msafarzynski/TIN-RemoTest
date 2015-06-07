@@ -28,3 +28,8 @@ std::string AgentModel::getExecutionResult()
 {
     return executioner->getResult();
 }
+
+void AgentModel::stopExecution()
+{
+    executioner->stopExecution();
+}

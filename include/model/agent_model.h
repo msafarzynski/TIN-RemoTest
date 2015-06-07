@@ -11,6 +11,7 @@ public:
     void updateScript(std::string);
     std::string getScript();
     void execute();
+    void stopExecution();
     std::string getExecutionResult();
 private:
     Executioner* executioner;

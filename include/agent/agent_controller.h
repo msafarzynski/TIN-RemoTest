@@ -14,6 +14,7 @@ public:
     AgentController(AgentQueue * const, AgentModel* const);
     void visit(StartExecutionEvent*);
     void visit(StartExecutionAtTimeEvent*);
+    void visit(StopExecutionEvent*);
     void visit(UpdateScriptEvent*);
     void run();
 private:

@@ -48,3 +48,8 @@ void StartExecutionEvent::accept(AgentController * controller)
 {
     controller->visit(this);
 }
+
+void StopExecutionEvent::accept(AgentController * controller)
+{
+    controller->visit(this);
+}

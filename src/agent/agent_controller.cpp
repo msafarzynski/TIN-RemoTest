@@ -32,3 +32,8 @@ void AgentController::visit(UpdateScriptEvent * event)
 {
     model->updateScript(event->getScript());
 }
+
+void AgentController::visit(StopExecutionEvent * event)
+{
+    model->stopExecution();
+}
