@@ -30,6 +30,11 @@ std::time_t StartExecutionAtTimeEvent::get_time()
     return time;
 }
 
+void StartExecutionAtTimeEvent::accept(AgentController * controller)
+{
+    controller->visit(this);
+}
+
 UpdateScriptEvent::UpdateScriptEvent(string script): script(script)
 {
 }

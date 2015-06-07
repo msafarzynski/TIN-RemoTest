@@ -45,13 +45,14 @@ public:
 };
 
 
-class StartExecutionAtTimeEvent: public Event
+class StartExecutionAtTimeEvent: public AgentEvent
 {
 private:
     const std::time_t time;
 public:
     StartExecutionAtTimeEvent(std::time_t);
     std::time_t get_time();
+    void accept(AgentController*);
 };
 
 

@@ -1,6 +1,7 @@
 #ifndef TIN_REMOTEST_AGENT_CONTROLLER_H
 #define TIN_REMOTEST_AGENT_CONTROLLER_H
 
+#include <controller/timer.hpp>
 #include "controller/controller.h"
 #include "model/agent_model.h"
 
@@ -20,6 +21,7 @@ public:
     void run();
 private:
     AgentModel * const model;
+    AgentTimer* timer;
 };
 
 #endif //TIN_REMOTEST_AGENT_CONTROLLLER_H
