@@ -53,3 +53,8 @@ void StopExecutionEvent::accept(AgentController * controller)
 {
     controller->visit(this);
 }
+
+void PrintExecutionResultsEvent::accept(AgentController * controller)
+{
+    controller->visit(this);
+}

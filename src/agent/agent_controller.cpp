@@ -37,3 +37,8 @@ void AgentController::visit(StopExecutionEvent * event)
 {
     model->stopExecution();
 }
+
+void AgentController::visit(PrintExecutionResultsEvent * event)
+{
+    std::cout<<"RESULT: \n"<<model->getExecutionResult();
+}

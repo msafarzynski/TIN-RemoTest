@@ -62,6 +62,13 @@ public:
 };
 
 
+class PrintExecutionResultsEvent: public AgentEvent
+{
+public:
+    void accept(AgentController*);
+};
+
+
 class UpdateScriptEvent: public AgentEvent
 {
 private:
