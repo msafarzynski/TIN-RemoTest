@@ -25,12 +25,13 @@ void AgentController::visit(StartExecutionEvent * event)
 
 void AgentController::visit(StartExecutionAtTimeEvent * event)
 {
-    std::cout<<"Start execution at time: "<<event->get_time()<<std::endl;
     if (timer != NULL)
     {
         timer->stop();
     }
-    timer = new AgentTimer(dynamic_cast<AgentEvent*>(new StartExecutionEvent()), agent_queue, 2000);
+    timer = new AgentTimer(dynamic_cast<AgentEvent*>(new StartExecutionEvent()), agent_queue,
+                           getSecondsUntil(event->get_time()));
+    timer->start();
 }
 
 void AgentController::visit(UpdateScriptEvent * event)
@@ -46,4 +47,14 @@ void AgentController::visit(StopExecutionEvent * event)
 void AgentController::visit(PrintExecutionResultsEvent * event)
 {
     std::cout<<"RESULT: \n"<<model->getExecutionResult();
+}
+
+std::time_t AgentController::getCurrentTime()
+{
+    return std::time(0) - timeDifference;
+}
+
+long AgentController::getSecondsUntil(time_t time)
+{
+    return time - getCurrentTime();
 }

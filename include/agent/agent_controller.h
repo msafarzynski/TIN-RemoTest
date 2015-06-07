@@ -22,6 +22,9 @@ public:
 private:
     AgentModel * const model;
     AgentTimer* timer;
+    long timeDifference = 0;
+    std::time_t getCurrentTime();
+    long getSecondsUntil(std::time_t);
 };
 
 #endif //TIN_REMOTEST_AGENT_CONTROLLLER_H
