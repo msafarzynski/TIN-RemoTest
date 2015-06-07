@@ -14,12 +14,13 @@ int main() {
     AgentModel* model = new AgentModel();
     AgentController* controller = new AgentController(queue, model);
 
-    std::time_t result = std::time(0);
-    std::cout << std::asctime(std::localtime(&result))
-    << result << " seconds since the Epoch\n";
-    string script = "ls";
+    string script = "ping 8.8.8.8";
     queue->push(new UpdateScriptEvent(script));
     queue->push(new StartExecutionEvent());
+    AgentTimer* timer = new AgentTimer(dynamic_cast<AgentEvent*>(new StopExecutionEvent()), queue, 2000);
+    timer->start();
+    AgentTimer* timer2 = new AgentTimer(dynamic_cast<AgentEvent*>(new PrintExecutionResultsEvent()), queue, 5000);
+    timer2->start();
 
     controller->run();
     return 0;
