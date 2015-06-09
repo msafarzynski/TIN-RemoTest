@@ -1,0 +1,1 @@
+W pliku host.txt należy umieścić adresy ip agentów oraz porty (należy zostawić port 3491)

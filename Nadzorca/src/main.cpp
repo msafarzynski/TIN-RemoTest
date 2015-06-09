@@ -1,7 +1,7 @@
 #include <iostream>
-#include "include/tcp_client.h"
-#include "include/remoTestMessage.h"
-#include "include/nadzorca.h"
+#include "../include/tcp_client.h"
+#include "../include/remoTestMessage.h"
+#include "../include/nadzorca.h"
 #include <string>
 
 
