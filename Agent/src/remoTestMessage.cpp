@@ -1,7 +1,3 @@
-//
-// Created by Agata Debska on 23.05.15.
-//
-
 #include "../include/remoTestMessage.h"
 
 remoTestMessage::remoTestMessage(const char* message){

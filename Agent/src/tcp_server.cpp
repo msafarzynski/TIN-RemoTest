@@ -43,7 +43,7 @@ tcp_server::tcp_server(){
 
 	listen(sockfd, 5);
 
-	std::cout << "Server is ready" << std::endl;
+	std::cout << "Ready" << std::endl;
 
 }
 
@@ -67,11 +67,11 @@ int tcp_server::accept_conn(){
 }
 
 int tcp_server::send_msg(const char* msg){
-	if(send(msgsock, msg, sizeof(msg), 0) == -1){
+	if(send(msgsock, msg, strlen(msg), 0) == -1){
 		perror("error sending message");
 		return -1;
 	}
-	return sizeof(msg);
+	return strlen(msg);
 }
 
 int tcp_server::receive_msg(char* msg){

@@ -1,8 +1,3 @@
-//
-// Created by Agata Debska on 21.05.15.
-//
-//modul agenta wykorzystujacy modul serwera tcp
-
 #ifndef TIN_AGENT_H
 #define TIN_AGENT_H
 
@@ -30,7 +25,7 @@ public:
 	void execute();
 };
 
-extern pthread_mutex_t mutex;
+extern pthread_mutex_t mutex1;
 void* send_msg(void*);
 bool isPidRunning(int pid);
 

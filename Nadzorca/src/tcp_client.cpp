@@ -36,16 +36,16 @@ tcp_client::tcp_client(struct sockaddr_storage* addr){
 		if (sockfd == -1)
 			continue;
 		if (connect(sockfd, rp->ai_addr, rp->ai_addrlen) != -1)
-			break;                  /* Success */
+			break;
 	}
 
-		if (rp == NULL) {               /* No address succeeded */
+		if (rp == NULL) {
 			fprintf(stderr, "Could not connect\n");
 			sockfd=-1;
 			return;
 		}
 
-		freeaddrinfo(result);           /* No longer needed */
+		freeaddrinfo(result);
 	std::cout << "Connected to server" << std::endl;
 
 }

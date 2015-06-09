@@ -1,7 +1,3 @@
-//
-// Created by agata on 26.05.15.
-//
-
 #ifndef NADZORCA_NADZORCA_H
 #define NADZORCA_NADZORCA_H
 

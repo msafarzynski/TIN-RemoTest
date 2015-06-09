@@ -3,9 +3,8 @@
 
 
 int main() {
-    std::cout << "Hello, World!" << std::endl << std::endl;
 
-
+    std::cout << "---------------RemoTest--------------" << std::endl;
     agent agent1;
     while(1)
         agent1.receive_msg(NULL);

@@ -1,5 +1,6 @@
 #include <sys/wait.h>
 #include "../include/agent.h"
+
 agent::agent(){
 
 	
@@ -9,7 +10,7 @@ agent::~agent(){
 
 }
 
-pthread_mutex_t mutex = PTHREAD_MUTEX_INITIALIZER;
+pthread_mutex_t mutex1 = PTHREAD_MUTEX_INITIALIZER;
 
 void* send_msg(void *a) {
     agent* agent1 = (agent*) a;
@@ -26,27 +27,23 @@ void* send_msg(void *a) {
     int fileSize = ftell (file);
     msg.size = (uint32_t) fileSize;
     rewind (file);
-    std::cout << "Size:" << msg.size << std::endl;
 
     if (!feof (file) )
     {
         while(fileSize>0) {
+            bzero(msg.data, sizeof(msg.data));
             int num = fileSize < sizeof(msg.data) ? fileSize : sizeof(msg.data);
-            std::cout << "num:" << num << std::endl;
-            std::cout << msg.data;
             if (fread(msg.data, 1, num, file) != num) break;
             agent1->getTcpModule()->send_msg(msg.getStringMessage().c_str());
             msg.type = remoTestMessage::RESULT;
             fileSize-=num;
-            std::cout << "Size-num:" << fileSize << std::endl;
         }
     }
     fclose (file);
-   // file = fopen("output.txt", "wb");
-   // fclose (file);
-    pthread_mutex_lock(&mutex);
+    std::cout << "Result sent" << std::endl;
+    pthread_mutex_lock(&mutex1);
     agent1->command_pid = -1;
-    pthread_mutex_unlock(&mutex);
+    pthread_mutex_unlock(&mutex1);
     pthread_kill(agent1->thread, 0);
 }
 
@@ -61,20 +58,17 @@ int agent::receive_msg(char *msg) {
         int rval = 0;
         do {
             bzero(buffer, 1024);
-          //  std::cout << "waiting for message" << std::endl;
             if ((rval = tcp_module.receive_msg(buffer)) == -1)
                 return -1;
             else if(rval == 0)
                 return 1;
             else{
-                std::cout << "message-->" << buffer << std::endl;
                 remoTestMessage message(buffer);
                 if (message.type == remoTestMessage::STOP) {
                     kill_process();
                     continue;
                 }
                 else if (message.type == remoTestMessage::START_SCRIPT && command_pid == -1) {
-                    std::cout << "START_SCRIPT" << std::endl;
                     size = message.size;
                     if((file = fopen("script.sh", "wb"))!=NULL){
                         int num = size < sizeof(message.data) ? size : sizeof(message.data);
@@ -84,7 +78,6 @@ int agent::receive_msg(char *msg) {
                 }
                 else if (message.type == remoTestMessage::SCRIPT && command_pid == -1) {
                     while (size > 0) {
-                        std::cout << "SCRIPT" << std::endl;
                         int num = size < sizeof(message.data) ? size : sizeof(message.data);
                         fwrite(message.data, 1, num, file);
                         size -= num;
@@ -92,6 +85,7 @@ int agent::receive_msg(char *msg) {
                 }
                 if(size==0 && command_pid == -1){
                     fclose(file);
+                    std::cout << "Received script" << std::endl;
                     execute();
                 }
             }
@@ -113,26 +107,11 @@ void agent::execute(){
         perror("error reading pid");                                //
         return;                                                    //
     }
-    pthread_mutex_lock(&mutex);
+    std::cout << "Executing.." << std::endl;
+    pthread_mutex_lock(&mutex1);
     command_pid = atoi(pid);
-    pthread_mutex_unlock(&mutex);
- /*   pid_t p = fork();
-    if (p == (pid_t) -1) {
-       perror("error creating process");
-        return;
-    } else if (p == 0) {    // CHILD
+    pthread_mutex_unlock(&mutex1);
 
-    } else {                // PARENT
-
-    }
-*/
-    /*
-    std::cout <<  "pid[]-->" << pid << std::endl;
-    std::cout << "Agent pid: " << getpid() << std::endl;
-    std::cout << "----pgid " << getpgrp() << std::endl;
-
-    std::cout << "pid-->" << command_pid<< std::endl;
-    */
     pclose(pipe);
 
 
@@ -141,20 +120,15 @@ void agent::execute(){
 
 int agent::kill_process(){
     std::string comm = "pkill -TERM -P " + std::to_string(command_pid);
-   // std::string comm = "kill -- -" + std::to_string(command_pid);
-    std::cout << comm.c_str() << std::endl;
     if(command_pid != -1){
-      // pkill(command_pid, 9);
        system(comm.c_str());
-        command_pid = -1;
+       command_pid = -1;
     }
     return 0;
 }
 
 bool isPidRunning(int pid){
-    while(waitpid(-1, 0, WNOHANG) > 0) {
-        // Wait for defunct....
-    }
+    while(waitpid(-1, 0, WNOHANG) > 0) ;
 
     if (0 == kill(pid, 0))
         return 1; // Process exists

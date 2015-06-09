@@ -1,6 +1,3 @@
-//
-// Created by Agata Debska on 23.05.15.
-//
 //klasa przechowujaca wiadomosc
 
 
@@ -9,7 +6,7 @@
 
 
 #define PACKET_SIZE 1024
-#define DATA_SIZE 1019
+#define DATA_SIZE 1015
 #include <cstring>
 #include <iostream>
 
