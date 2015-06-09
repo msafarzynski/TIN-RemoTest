@@ -17,10 +17,11 @@
 
 class agent{
 	tcp_server tcp_module;
-	int command_pid = -1;
-	pthread_t thread;
+
 	FILE* file;
 public:
+	int command_pid = -1;
+	pthread_t thread;
 	agent();
 	~agent();
 	tcp_server* getTcpModule(){ return &tcp_module; };
@@ -29,8 +30,9 @@ public:
 	void execute();
 };
 
-
+extern pthread_mutex_t mutex;
 void* send_msg(void*);
+bool isPidRunning(int pid);
 
 #endif
 

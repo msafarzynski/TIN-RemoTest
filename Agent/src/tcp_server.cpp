@@ -15,7 +15,7 @@ tcp_server::tcp_server(){
 	hints.ai_addr = NULL;
 	hints.ai_next = NULL;
 
-	int s = getaddrinfo(NULL, "3490", &hints, &result);
+	int s = getaddrinfo(NULL, "3491", &hints, &result);
 	if(s != 0){
 		perror(gai_strerror(s));
 		return;
@@ -48,8 +48,8 @@ tcp_server::tcp_server(){
 }
 
 tcp_server::~tcp_server(){
-	close(sockfd);
 	close(msgsock);
+	close(sockfd);
 }
 
 void::tcp_server::close_socket(){

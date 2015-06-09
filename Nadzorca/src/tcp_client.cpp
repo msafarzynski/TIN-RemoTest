@@ -74,9 +74,21 @@ int tcp_client::send_msg(const char* msg){
 	}
 
 int tcp_client::receive_msg(char* msg){
-	if(recv(sockfd, msg, 1024, 0) == -1){
-		perror("error reading from socket");
-		return 1;
+	int rval;
+	if(msg == NULL){
+		perror("NULL buffer");
+		return -1;
 	}
+	if((rval = recv(sockfd, msg, 1024, 0)) == -1){
+		perror("Reading stream message");
+		close(sockfd);
+		return -1;
+	}
+	if(rval == 0){
+		printf("Ending connection\n");
+		close(sockfd);
+		return 0;
+	}
+	return sizeof(msg);
 }
 
